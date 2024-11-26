@@ -17,7 +17,7 @@ return [
 
     'allowed_methods' => ['*'], // '*' allows all methods (GET, POST, etc.).
 
-    'allowed_origins' => ['http://localhost:3000'], // Frontend URLs.
+    'allowed_origins' => ['*'], // Frontend URLs.
 
     'allowed_origins_patterns' => [], // Regex patterns for matching origins.
 
