@@ -12,14 +12,18 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data = Product::all();
+        // Fetch products ordered by 'created_at' in descending order (newest first)
+        $data = Product::orderBy('created_at', 'desc')->get();
+
         // Add the full image URL to each product in the response
         foreach ($data as $product) {
             // Assuming 'image' is the relative path stored in the database
             $product->image = asset('products/' . $product->image);
         }
+
         return response()->json(['message' => 'Success', 'data' => $data], 200);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -106,7 +110,7 @@ class ProductController extends Controller
                 'name' => 'required|string|max:255',
                 'description' => 'required|string|max:1000',
                 'price' => 'required|numeric|min:0',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',  // Image is optional in update
+                // 'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',  // Image is optional in update
             ]);
 
             // dd($validated);
